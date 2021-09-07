@@ -2,8 +2,12 @@ name: app
 
 type: php:8.0
 
+relationships:
+    database: "db:postgresql"
+
 runtime:
     extensions:
+        - pdo_pgsql
         - apcu
         - mbstring
         - sodium
