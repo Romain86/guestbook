@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Conference;
 
 class ConferenceController extends AbstractController
 {
@@ -19,7 +20,7 @@ class ConferenceController extends AbstractController
     }
 
     #[Route('/conference/{id}', name:'conference')]
-    public function show($id, ConferenceRepository $conferenceRepository, CommentRepository $commentRepository, Request $request)
+    public function show(Conference $conference, CommentRepository $commentRepository, ConferenceRepository $conferenceRepository, Request $request, $id)
     {
         $conference = $conferenceRepository->find($id);
         $offset = max(0, $request->query->getInt('offset', 0));
